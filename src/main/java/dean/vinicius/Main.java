@@ -51,7 +51,7 @@ public class Main {
                         }
 
                         int escolhaUser = Integer.parseInt(jogada);
-                        int escolhaCpu = aleatorio.nextInt(1,4);
+                        int escolhaCpu = aleatorio.nextInt(1, 4);
 
                         System.out.println("Você escolheu " + jokenpo[escolhaUser]);
 
@@ -99,7 +99,7 @@ public class Main {
                         System.out.println();
 
                         int escolhaUser = Integer.parseInt(jogada);
-                        int escolhaCpu = aleatorio.nextInt(1,4);
+                        int escolhaCpu = aleatorio.nextInt(1, 4);
 
                         System.out.println("Você escolheu " + jokenpo[escolhaUser]);
 
@@ -158,7 +158,6 @@ public class Main {
     }
 
 
-
     public static void Estatisticas(int vitoriasUser, int vitoriasCpu, int empates, int campeonatosJogador, int campeonatosCpu) {
         int totalJogos = vitoriasUser + vitoriasCpu + empates;
 
@@ -167,13 +166,13 @@ public class Main {
             return;
         }
 
-        double porcentagemVitoriasUser = (vitoriasUser * 100.0)/totalJogos;
-        double porcentagemVitoriasCpu = (vitoriasCpu * 100.0) /totalJogos;
-        double porcentagemEmpates = (empates * 100.0)/ totalJogos;
+        double porcentagemVitoriasUser = (vitoriasUser * 100.0) / totalJogos;
+        double porcentagemVitoriasCpu = (vitoriasCpu * 100.0) / totalJogos;
+        double porcentagemEmpates = (empates * 100.0) / totalJogos;
 
         System.out.println("\n===== Estatísticas da Sessão =====");
         System.out.println("Total de jogos: " + totalJogos);
-                System.out.printf("Porcentagem de vitórias do jogador: %.2f%%\n", porcentagemVitoriasUser);
+        System.out.printf("Porcentagem de vitórias do jogador: %.2f%%\n", porcentagemVitoriasUser);
         System.out.printf("Porcentagem de vitórias da IA: %.2f%%\n", porcentagemVitoriasCpu);
         System.out.printf("Porcentagem de empates: %.2f%%\n", porcentagemEmpates);
         System.out.println("Campeonatos ganhos pelo jogador: " + campeonatosJogador);
