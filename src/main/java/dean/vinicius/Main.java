@@ -12,7 +12,7 @@ public class Main {
     public static void main(String[] args) throws InterruptedException {
         Scanner scanner = new Scanner(System.in);
         Random aleatorio = new Random();
-        String[] jokenpo = {"Pedra", "Papel", "Tesoura"};
+        String[] jokenpo = {"", "Pedra", "Papel", "Tesoura"};
         String escolhaMenu, jogada, resultado;
         int vitoriasJogador = 0, vitoriasJogadorCamp = 0, vitoriasCpu = 0, vitoriasCpuCamp = 0, empates = 0, campeonatosJogador = 0, campeonatosCPU = 0;
 
@@ -50,20 +50,20 @@ public class Main {
                             break;
                         }
 
-                        int escolhaUser = Integer.parseInt(jogada) - 1;
-                        int EscolhaCpu = aleatorio.nextInt(3);
+                        int escolhaUser = Integer.parseInt(jogada);
+                        int escolhaCpu = aleatorio.nextInt(1,4);
 
                         System.out.println("Você escolheu " + jokenpo[escolhaUser]);
 
-                        System.out.println("A IA escolheu " + jokenpo[EscolhaCpu]);
+                        System.out.println("A IA escolheu " + jokenpo[escolhaCpu]);
 
 
-                        if (escolhaUser == EscolhaCpu) {
+                        if (escolhaUser == escolhaCpu) {
                             resultado = "Empate!";
                             empates++;
-                        } else if ((escolhaUser == 0 && EscolhaCpu == 2) ||
-                                (escolhaUser == 1 && EscolhaCpu == 0) ||
-                                (escolhaUser == 2 && EscolhaCpu == 1)) {
+                        } else if ((escolhaUser == 1 && escolhaCpu == 3) ||
+                                (escolhaUser == 2 && escolhaCpu == 1) ||
+                                (escolhaUser == 3 && escolhaCpu == 2)) {
                             resultado = "Você venceu!";
                             vitoriasJogador++;
                         } else {
@@ -98,8 +98,8 @@ public class Main {
                         jogada = scanner.nextLine();
                         System.out.println();
 
-                        int escolhaUser = Integer.parseInt(jogada) - 1;
-                        int escolhaCpu = aleatorio.nextInt(3);
+                        int escolhaUser = Integer.parseInt(jogada);
+                        int escolhaCpu = aleatorio.nextInt(1,4);
 
                         System.out.println("Você escolheu " + jokenpo[escolhaUser]);
 
@@ -108,7 +108,9 @@ public class Main {
                         if (escolhaUser == escolhaCpu) {
                             System.out.println("Empate!");
                             empates++;
-                        } else if ((escolhaUser == 0 && escolhaCpu == 2) || (escolhaUser == 1 && escolhaCpu == 0) || (escolhaUser == 2 && escolhaCpu == 1)) {
+                        } else if ((escolhaUser == 1 && escolhaCpu == 3)
+                                || (escolhaUser == 2 && escolhaCpu == 1)
+                                || (escolhaUser == 3 && escolhaCpu == 2)) {
                             System.out.println("Você venceu esta rodada!");
                             vitoriasJogadorCamp++;
                             vitoriasJogador++;
