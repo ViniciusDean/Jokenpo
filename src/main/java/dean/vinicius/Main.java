@@ -9,10 +9,9 @@ também acho ela uma linguagem muito completa para backend, principalmente com o
 e além disso é muito usada no mercado.
  */
 public class Main {
+
     public static void main(String[] args) throws InterruptedException {
         Scanner scanner = new Scanner(System.in);
-        Random aleatorio = new Random();
-        String[] jokenpo = {"", "Pedra", "Papel", "Tesoura"};
         String escolhaMenu, jogada, resultado;
         int vitoriasJogador = 0, vitoriasJogadorCamp = 0, vitoriasCpu = 0, vitoriasCpuCamp = 0, empates = 0, campeonatosJogador = 0, campeonatosCPU = 0;
 
@@ -20,10 +19,10 @@ public class Main {
             System.out.println("=================================");
             System.out.println("         JOGO JOKENPO");
             System.out.println("=================================");
-            System.out.println("Escolha uma opção:");
-            System.out.println("1 - Jogar Novo Jogo");
-            System.out.println("2 - Jogar Novo Campeonato");
-            System.out.println("0 - Sair");
+            System.out.println("   Escolha uma opção:");
+            System.out.println("[1] - Jogar Novo Jogo");
+            System.out.println("[2] - Jogar Novo Campeonato");
+            System.out.println("[0] Sair");
             System.out.print("Digite sua jogada: ");
 
             escolhaMenu = scanner.nextLine();
@@ -32,55 +31,43 @@ public class Main {
             switch (escolhaMenu) {
                 case "1":
                     do {
-                        System.out.println("=================================");
-                        System.out.println("        JOKENPO");
-                        System.out.println("=================================");
-                        System.out.println("Escolha uma opção:");
-                        System.out.println("1 - Pedra");
-                        System.out.println("2 - Papel");
-                        System.out.println("3 - Tesoura");
-                        System.out.println("0 - Voltar ao menu principal");
-                        System.out.print("Digite sua jogada: ");
-
-                        jogada = scanner.nextLine();
-                        System.out.println();
-
+                        do {
+                            System.out.println("=================================");
+                            System.out.println("        JOKENPO");
+                            System.out.println("=================================");
+                            System.out.println("Escolha uma opção:");
+                            System.out.println("1 - Pedra");
+                            System.out.println("2 - Papel");
+                            System.out.println("3 - Tesoura");
+                            System.out.println("0 - Voltar ao menu principal");
+                            System.out.print("Digite sua jogada: ");
+                            jogada = scanner.nextLine();
+                            System.out.println();
+                            if(jogada.isEmpty() || !jogada.matches("[0-3]") || jogada.contains(" ") || !jogada.matches("\\d")){
+                                System.out.println("Por favor, selecione um numero entre 0 e 3, sem espaços!");
+                                Thread.sleep(3000);
+                            }
+                        } while (jogada.isEmpty() || !jogada.matches("[0-3]")|| jogada.contains(" ") || !jogada.matches("\\d"));
                         if (jogada.equals("0")) {
                             System.out.println("Voltando ao menu principal...\n");
                             break;
                         }
-
-                        int escolhaUser = Integer.parseInt(jogada);
-                        int escolhaCpu = aleatorio.nextInt(1, 4);
-
-                        System.out.println("Você escolheu " + jokenpo[escolhaUser]);
-
-                        System.out.println("A IA escolheu " + jokenpo[escolhaCpu]);
-
-
-                        if (escolhaUser == escolhaCpu) {
+                        resultado = Jokenpo(jogada);
+                        if (resultado.equals("empate")) {
                             resultado = "Empate!";
                             empates++;
-                        } else if ((escolhaUser == 1 && escolhaCpu == 3) ||
-                                (escolhaUser == 2 && escolhaCpu == 1) ||
-                                (escolhaUser == 3 && escolhaCpu == 2)) {
+                        } else if (resultado.equals("vitoriaUser")) {
                             resultado = "Você venceu!";
                             vitoriasJogador++;
                         } else {
                             resultado = "A IA venceu!";
                             vitoriasCpu++;
                         }
-
                         System.out.println(resultado);
-
                         System.out.println("Placar: Você " + vitoriasJogador + " - IA " + vitoriasCpu + " - Empates " + empates);
-                        System.out.println();
                         Thread.sleep(5000);
-
-
                     } while (!jogada.equals("0"));
                     break;
-
                 case "2":
                     System.out.println("=================================");
                     System.out.println("    MODO CAMPEONATO (Melhor de 5)");
@@ -97,29 +84,20 @@ public class Main {
 
                         jogada = scanner.nextLine();
                         System.out.println();
-
-                        int escolhaUser = Integer.parseInt(jogada);
-                        int escolhaCpu = aleatorio.nextInt(1, 4);
-
-                        System.out.println("Você escolheu " + jokenpo[escolhaUser]);
-
-                        System.out.println("A IA escolheu " + jokenpo[escolhaCpu]);
-
-                        if (escolhaUser == escolhaCpu) {
-                            System.out.println("Empate!");
+                        resultado = Jokenpo(jogada);
+                        if (resultado.equals("empate")) {
+                            resultado = "Empate!";
                             empates++;
-                        } else if ((escolhaUser == 1 && escolhaCpu == 3)
-                                || (escolhaUser == 2 && escolhaCpu == 1)
-                                || (escolhaUser == 3 && escolhaCpu == 2)) {
-                            System.out.println("Você venceu esta rodada!");
+                        } else if (resultado.equals("vitoriaUser")) {
+                            resultado = "Você venceu!";
                             vitoriasJogadorCamp++;
                             vitoriasJogador++;
                         } else {
-                            System.out.println("A IA venceu esta rodada!");
-                            vitoriasCpuCamp++;
+                            resultado = "A IA venceu!";
                             vitoriasCpu++;
+                            vitoriasCpuCamp++;
                         }
-
+                        System.out.println(resultado);
                         System.out.println("Placar: Você " + vitoriasJogadorCamp + " - IA " + vitoriasCpuCamp);
                         Thread.sleep(5000);
 
@@ -148,7 +126,7 @@ public class Main {
                     break;
 
                 default:
-                    System.out.println("Escolha inválida! Tente novamente.\n");
+                    System.out.println("Escolha inválida! Tente novamente.");
                     break;
             }
 
@@ -178,5 +156,23 @@ public class Main {
         System.out.println("Campeonatos ganhos pelo jogador: " + campeonatosJogador);
         System.out.println("Campeonatos ganhos pela IA: " + campeonatosCpu);
         System.out.println("==================================\n");
+    }
+
+    public static String Jokenpo(String jogada) {
+        Random aleatorio = new Random();
+        String[] jokenpo = {"", "Pedra", "Papel", "Tesoura"};
+        int escolhaUser = Integer.parseInt(jogada);
+        int escolhaCpu = aleatorio.nextInt(1, 4);
+        System.out.println("Você escolheu " + jokenpo[escolhaUser]);
+        System.out.println("A IA escolheu " + jokenpo[escolhaCpu]);
+        if (escolhaUser == escolhaCpu) {
+            return "empate";
+        } else if ((escolhaUser == 1 && escolhaCpu == 3) ||
+                (escolhaUser == 2 && escolhaCpu == 1) ||
+                (escolhaUser == 3 && escolhaCpu == 2)) {
+            return "vitoriaUser";
+        } else {
+            return "vitoriaCpu";
+        }
     }
 }
