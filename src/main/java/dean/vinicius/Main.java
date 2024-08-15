@@ -55,7 +55,8 @@ public class Main {
                             break;
                         }
                         retorno = Jokenpo(jogada);
-                        if (retorno == 001) { //aqui pegamos o retorno da função e comparamos com os ids de empate, vitoria humana ou a vitoria da IA
+                        //aqui pegamos o retorno da função e comparamos com os ids de empate, vitoria humana ou a vitoria da IA
+                        if (retorno == 001) {
                             resultado = "Empate!";
                             empates++;
                         } else if (retorno == 002) {
@@ -68,7 +69,8 @@ public class Main {
                         System.out.println(resultado);
                         System.out.println("Placar: Você " + vitoriasJogador + " - IA " + vitoriasCpu + " - Empates " + empates);
                         Thread.sleep(5000);
-                    } while (!jogada.equals("0")); // para que o usuario fique jogando até decidir voltar ao menu principal
+                        // para que o usuario fique jogando até decidir voltar ao menu principal
+                    } while (!jogada.equals("0"));
                     break;
                 case "2":
                     System.out.println("=================================");
@@ -87,7 +89,8 @@ public class Main {
                         jogada = scanner.nextLine();
                         System.out.println();
                         retorno = Jokenpo(jogada);
-                        if (retorno == 001) { // mesma coisa do case '1' porém aqui tem uma variavel a mais, que garante que a MD5 ocorrerá sem problemas
+                        // mesma coisa do case '1' porém aqui tem uma variavel a mais, que garante que a MD5 ocorrerá sem problemas
+                        if (retorno == 001) {
                             resultado = "Empate!";
                             empates++;
                         } else if (retorno == 002) {
@@ -131,8 +134,8 @@ public class Main {
                     System.out.println("Escolha inválida! Tente novamente.");
                     break;
             }
-
-        } while (!escolhaMenu.equals("0")); // para que o usuario possa alternar entre os modos de jogo sem sair do programa
+// para que o usuario possa alternar entre os modos de jogo sem sair do programa
+        } while (!escolhaMenu.equals("0"));
 
         scanner.close();
     }
