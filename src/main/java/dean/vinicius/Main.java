@@ -12,8 +12,8 @@ public class Main {
 
     public static void main(String[] args) throws InterruptedException {
         Scanner scanner = new Scanner(System.in);
-        String escolhaMenu, jogada, resultado;
-        int vitoriasJogador = 0, vitoriasJogadorCamp = 0, vitoriasCpu = 0, vitoriasCpuCamp = 0, empates = 0, campeonatosJogador = 0, campeonatosCPU = 0;
+        String escolhaMenu, jogada, resultado ;
+        int vitoriasJogador = 0, vitoriasJogadorCamp = 0, vitoriasCpu = 0, retorno = 0, vitoriasCpuCamp = 0, empates = 0, campeonatosJogador = 0, campeonatosCPU = 0;
 
         do {
             System.out.println("=================================");
@@ -52,11 +52,11 @@ public class Main {
                             System.out.println("Voltando ao menu principal...\n");
                             break;
                         }
-                        resultado = Jokenpo(jogada);
-                        if (resultado.equals("empate")) {
+                        retorno = Jokenpo(jogada);
+                        if (retorno == 001) {
                             resultado = "Empate!";
                             empates++;
-                        } else if (resultado.equals("vitoriaUser")) {
+                        } else if (retorno == 002) {
                             resultado = "Você venceu!";
                             vitoriasJogador++;
                         } else {
@@ -84,11 +84,11 @@ public class Main {
 
                         jogada = scanner.nextLine();
                         System.out.println();
-                        resultado = Jokenpo(jogada);
-                        if (resultado.equals("empate")) {
+                        retorno = Jokenpo(jogada);
+                        if (retorno == 001) {
                             resultado = "Empate!";
                             empates++;
-                        } else if (resultado.equals("vitoriaUser")) {
+                        } else if (retorno == 002) {
                             resultado = "Você venceu!";
                             vitoriasJogadorCamp++;
                             vitoriasJogador++;
@@ -158,7 +158,7 @@ public class Main {
         System.out.println("==================================\n");
     }
 
-    public static String Jokenpo(String jogada) {
+    public static int Jokenpo(String jogada) {
         Random aleatorio = new Random();
         String[] jokenpo = {"", "Pedra", "Papel", "Tesoura"};
         int escolhaUser = Integer.parseInt(jogada);
@@ -166,13 +166,13 @@ public class Main {
         System.out.println("Você escolheu " + jokenpo[escolhaUser]);
         System.out.println("A IA escolheu " + jokenpo[escolhaCpu]);
         if (escolhaUser == escolhaCpu) {
-            return "empate";
+            return 001;
         } else if ((escolhaUser == 1 && escolhaCpu == 3) ||
                 (escolhaUser == 2 && escolhaCpu == 1) ||
                 (escolhaUser == 3 && escolhaCpu == 2)) {
-            return "vitoriaUser";
+            return 002;
         } else {
-            return "vitoriaCpu";
+            return 003;
         }
     }
 }
