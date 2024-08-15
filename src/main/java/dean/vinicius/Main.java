@@ -4,6 +4,12 @@ import java.util.Random;
 import java.util.Scanner;
 
 /*
+Titulo: Desafio Jokenpô
+Arquivo: Main.java
+Data: 15/08/2024
+Autor: Vinícius Dean
+Contato: deanvinicius8@gmail.com
+Motivo que escolhi a linguagem java para o desafio:
 Escolhi java pois é a minha linguagem preferida e a que tenho mais projetos
 também acho ela uma linguagem muito completa para backend, principalmente com o framework Spring
 e além disso é muito usada no mercado.
@@ -80,6 +86,7 @@ public class Main {
                     vitoriasCpuCamp = 0;
 
                     while (vitoriasJogadorCamp < 3 && vitoriasCpuCamp < 3) {
+                        do{
                         System.out.println("Escolha uma opção:");
                         System.out.println("1 - Pedra");
                         System.out.println("2 - Papel");
@@ -87,9 +94,15 @@ public class Main {
                         System.out.print("Digite sua jogada: ");
 
                         jogada = scanner.nextLine();
+                            System.out.println();
+                            if (jogada.isEmpty() || !jogada.matches("[0-3]") || jogada.contains(" ")
+                                    || !jogada.matches("\\d")) {
+                                System.out.println("Por favor, selecione um numero entre 0 e 3, sem espaços!");
+                                Thread.sleep(2000);
+                            }
+                        } while (jogada.isEmpty() || !jogada.matches("[0-3]") || jogada.contains(" ") || !jogada.matches("\\d"));
                         System.out.println();
                         retorno = Jokenpo(jogada);
-                        // mesma coisa do case '1' porém aqui tem uma variavel a mais, que garante que a MD5 ocorrerá sem problemas
                         if (retorno == 001) {
                             resultado = "Empate!";
                             empates++;
@@ -104,7 +117,7 @@ public class Main {
                         }
                         System.out.println(resultado);
                         System.out.println("Placar: Você " + vitoriasJogadorCamp + " - IA " + vitoriasCpuCamp);
-                        Thread.sleep(5000);
+                        Thread.sleep(2000);
 
                         System.out.println();
                     }
