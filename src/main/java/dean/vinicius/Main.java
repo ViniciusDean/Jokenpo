@@ -45,7 +45,7 @@ public class Main {
                             jogada = scanner.nextLine();
                             System.out.println();
                             if (jogada.isEmpty() || !jogada.matches("[0-3]") || jogada.contains(" ")
-                                    || !jogada.matches("\\d"))  { //aqui faço uma verificação para evitar que o programa pare de funcionar caso o input do usuario não seja o esperado
+                                    || !jogada.matches("\\d")) { //aqui faço uma verificação para evitar que o programa pare de funcionar caso o input do usuario não seja o esperado
                                 System.out.println("Por favor, selecione um numero entre 0 e 3, sem espaços!");
                                 Thread.sleep(3000);
                             }
@@ -134,7 +134,7 @@ public class Main {
                     System.out.println("Escolha inválida! Tente novamente.");
                     break;
             }
-// para que o usuario possa alternar entre os modos de jogo sem sair do programa
+        // para que o usuario possa alternar entre os modos de jogo sem sair do programa
         } while (!escolhaMenu.equals("0"));
 
         scanner.close();
@@ -167,9 +167,11 @@ public class Main {
         Random aleatorio = new Random();
         String[] jokenpo = {"", "Pedra", "Papel", "Tesoura"};
         int escolhaUser = Integer.parseInt(jogada);
-        int escolhaCpu = aleatorio.nextInt(1, 4); // aqui criamos um número aleatório entre 1 e 3, que é a jogada da IA
+        // aqui criamos um número aleatório entre 1 e 3, que é a jogada da IA
+        int escolhaCpu = aleatorio.nextInt(1, 4);
         System.out.println("Você escolheu " + jokenpo[escolhaUser]);
-        System.out.println("A IA escolheu " + jokenpo[escolhaCpu]); // aqui comparamos as escolhas com a array para mostrar no console a jogada de cada um
+        // aqui comparamos as escolhas com a array para mostrar no console a jogada de cada um
+        System.out.println("A IA escolheu " + jokenpo[escolhaCpu]);
         if (escolhaUser == escolhaCpu) {
             return 001;
         } else if ((escolhaUser == 1 && escolhaCpu == 3) ||
