@@ -30,7 +30,7 @@ public class Main {
             System.out.println("[1] - Jogar Novo Jogo");
             System.out.println("[2] - Jogar Novo Campeonato");
             System.out.println("[0] Sair");
-            System.out.print("Digite sua jogada: ");
+            System.out.print("Digite uma opção: ");
 
             escolhaMenu = scanner.nextLine();
             System.out.println();
@@ -74,7 +74,7 @@ public class Main {
                         }
                         System.out.println(resultado);
                         System.out.println("Placar: Você " + vitoriasJogador + " - IA " + vitoriasCpu + " - Empates " + empates);
-                        Thread.sleep(5000);
+                        Thread.sleep(3000);
                         // para que o usuario fique jogando até decidir voltar ao menu principal
                     } while (!jogada.equals("0"));
                     break;
@@ -133,7 +133,7 @@ public class Main {
                         System.out.println("=================================");
                         campeonatosCPU++;
                     }
-                    Thread.sleep(5000);
+                    Thread.sleep(3000);
 
 
                     break;
