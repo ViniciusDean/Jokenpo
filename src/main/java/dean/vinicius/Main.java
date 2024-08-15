@@ -12,8 +12,9 @@ public class Main {
 
     public static void main(String[] args) throws InterruptedException {
         Scanner scanner = new Scanner(System.in);
-        String escolhaMenu, jogada, resultado ;
-        int vitoriasJogador = 0, vitoriasJogadorCamp = 0, vitoriasCpu = 0, retorno = 0, vitoriasCpuCamp = 0, empates = 0, campeonatosJogador = 0, campeonatosCPU = 0;
+        String escolhaMenu, jogada, resultado;
+        int vitoriasJogador = 0, vitoriasJogadorCamp = 0, vitoriasCpu = 0,
+                retorno = 0, vitoriasCpuCamp = 0, empates = 0, campeonatosJogador = 0, campeonatosCPU = 0;
 
         do {
             System.out.println("=================================");
@@ -43,17 +44,18 @@ public class Main {
                             System.out.print("Digite sua jogada: ");
                             jogada = scanner.nextLine();
                             System.out.println();
-                            if(jogada.isEmpty() || !jogada.matches("[0-3]") || jogada.contains(" ") || !jogada.matches("\\d")){
+                            if (jogada.isEmpty() || !jogada.matches("[0-3]") || jogada.contains(" ")
+                                    || !jogada.matches("\\d"))  { //aqui faço uma verificação para evitar que o programa pare de funcionar caso o input do usuario não seja o esperado
                                 System.out.println("Por favor, selecione um numero entre 0 e 3, sem espaços!");
                                 Thread.sleep(3000);
                             }
-                        } while (jogada.isEmpty() || !jogada.matches("[0-3]")|| jogada.contains(" ") || !jogada.matches("\\d"));
+                        } while (jogada.isEmpty() || !jogada.matches("[0-3]") || jogada.contains(" ") || !jogada.matches("\\d")); // loop vai ficar voltando pro scanner até o input ser o que o programa espera
                         if (jogada.equals("0")) {
                             System.out.println("Voltando ao menu principal...\n");
                             break;
                         }
                         retorno = Jokenpo(jogada);
-                        if (retorno == 001) {
+                        if (retorno == 001) { //aqui pegamos o retorno da função e comparamos com os ids de empate, vitoria humana ou a vitoria da IA
                             resultado = "Empate!";
                             empates++;
                         } else if (retorno == 002) {
@@ -66,7 +68,7 @@ public class Main {
                         System.out.println(resultado);
                         System.out.println("Placar: Você " + vitoriasJogador + " - IA " + vitoriasCpu + " - Empates " + empates);
                         Thread.sleep(5000);
-                    } while (!jogada.equals("0"));
+                    } while (!jogada.equals("0")); // para que o usuario fique jogando até decidir voltar ao menu principal
                     break;
                 case "2":
                     System.out.println("=================================");
@@ -85,7 +87,7 @@ public class Main {
                         jogada = scanner.nextLine();
                         System.out.println();
                         retorno = Jokenpo(jogada);
-                        if (retorno == 001) {
+                        if (retorno == 001) { // mesma coisa do case '1' porém aqui tem uma variavel a mais, que garante que a MD5 ocorrerá sem problemas
                             resultado = "Empate!";
                             empates++;
                         } else if (retorno == 002) {
@@ -130,7 +132,7 @@ public class Main {
                     break;
             }
 
-        } while (!escolhaMenu.equals("0"));
+        } while (!escolhaMenu.equals("0")); // para que o usuario possa alternar entre os modos de jogo sem sair do programa
 
         scanner.close();
     }
@@ -144,7 +146,7 @@ public class Main {
             return;
         }
 
-        double porcentagemVitoriasUser = (vitoriasUser * 100.0) / totalJogos;
+        double porcentagemVitoriasUser = (vitoriasUser * 100.0) / totalJogos; // aqui criamos as estatisticas que serão exibidas ao usuario no encerramento do programa
         double porcentagemVitoriasCpu = (vitoriasCpu * 100.0) / totalJogos;
         double porcentagemEmpates = (empates * 100.0) / totalJogos;
 
@@ -162,9 +164,9 @@ public class Main {
         Random aleatorio = new Random();
         String[] jokenpo = {"", "Pedra", "Papel", "Tesoura"};
         int escolhaUser = Integer.parseInt(jogada);
-        int escolhaCpu = aleatorio.nextInt(1, 4);
+        int escolhaCpu = aleatorio.nextInt(1, 4); // aqui criamos um número aleatório entre 1 e 3, que é a jogada da IA
         System.out.println("Você escolheu " + jokenpo[escolhaUser]);
-        System.out.println("A IA escolheu " + jokenpo[escolhaCpu]);
+        System.out.println("A IA escolheu " + jokenpo[escolhaCpu]); // aqui comparamos as escolhas com a array para mostrar no console a jogada de cada um
         if (escolhaUser == escolhaCpu) {
             return 001;
         } else if ((escolhaUser == 1 && escolhaCpu == 3) ||
